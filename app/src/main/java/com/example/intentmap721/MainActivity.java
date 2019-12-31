@@ -68,10 +68,17 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void btnClick() {
+        boolean isContainLetter = false;
         String location = editLocation.getText().toString();
+        char[] locationChar = location.toCharArray();
+        for (char element : locationChar) {
+            if (Character.isLetter(element)) {
+                isContainLetter = true;
+                break;
+            }
+        }
         Uri uri;
-        char firstLetter = location.charAt(0);
-        if (Character.isLetter(firstLetter)) {
+        if (isContainLetter) {
             uri = Uri.parse("geo:?q=" + location);
         } else {
             uri = Uri.parse("geo:" + location);
